@@ -1,5 +1,6 @@
+%define name printer-testpages
 %define version 2006
-%define release 1mdk
+%define release %mkrel 2
 
 ##### RPM PROBLEM WORKAROUNDS
 
@@ -11,7 +12,7 @@
 
 
 Summary: Test pages to check the output quality of printers
-Name:		printer-testpages
+Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 License:	GPL
