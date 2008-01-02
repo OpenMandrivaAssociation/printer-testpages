@@ -33,6 +33,7 @@ Source302:	cups-profile.jpg.bz2
 
 ##### BUILD ROOT
 
+BuildRoot:	%_tmppath/%name-%version-%release-root
 
 ##### PACKAGE DESCRIPTION
 
