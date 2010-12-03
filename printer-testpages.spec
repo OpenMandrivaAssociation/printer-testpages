@@ -1,6 +1,6 @@
 %define name printer-testpages
 %define version 2006
-%define release %mkrel 6
+%define release %mkrel 7
 
 ##### RPM PROBLEM WORKAROUNDS
 
