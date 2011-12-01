@@ -46,20 +46,20 @@ with image position checks, a photo test page and a text test page.
 
 %prep
 # remove old directory
-rm -rf $RPM_BUILD_DIR/%{name}-%{version}
-mkdir $RPM_BUILD_DIR/%{name}-%{version}
+rm -rf %{_builddir}/%{name}-%{version}
+mkdir %{_builddir}/%{name}-%{version}
 
 # Red Hat test pages
 %setup -q -T -D -a 300 -n %{name}-%{version}
 
 # Photo test page
-bzcat %{SOURCE302} > $RPM_BUILD_DIR/%{name}-%{version}/photo-testpage.jpg
+bzcat %{SOURCE302} > %{_builddir}/%{name}-%{version}/photo-testpage.jpg
 
 
 
 %build
 
-cd $RPM_BUILD_DIR/%{name}-%{version}
+cd %{_builddir}/%{name}-%{version}
 
 # Mandrivized CUPS test page
 cat testprint.prolog.ps.in MDALINUX-ps1.eps testprint.epilog.ps.in > testprint.ps
@@ -77,7 +77,7 @@ rm -rf %{buildroot}
 # Make directory
 install -d %{buildroot}%{_datadir}/%{name}
 
-cd $RPM_BUILD_DIR/%{name}-%{version}
+cd %{_builddir}/%{name}-%{version}
 
 cp *.ps *.jpg *.asc %{buildroot}%{_datadir}/printer-testpages
 
