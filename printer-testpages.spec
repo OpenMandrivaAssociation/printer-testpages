@@ -72,14 +72,14 @@ fig2dev -Lps -zA4 testpage-a4.fig testpage-a4.ps
 
 %install
 
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 # Make directory
-install -d $RPM_BUILD_ROOT%{_datadir}/%{name}
+install -d %{buildroot}%{_datadir}/%{name}
 
 cd $RPM_BUILD_DIR/%{name}-%{version}
 
-cp *.ps *.jpg *.asc $RPM_BUILD_ROOT%{_datadir}/printer-testpages
+cp *.ps *.jpg *.asc %{buildroot}%{_datadir}/printer-testpages
 
 
 
@@ -92,5 +92,5 @@ cp *.ps *.jpg *.asc $RPM_BUILD_ROOT%{_datadir}/printer-testpages
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
