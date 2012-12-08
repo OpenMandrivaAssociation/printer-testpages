@@ -1,6 +1,6 @@
 %define name printer-testpages
 %define version 2006
-%define release %mkrel 8
+%define release %mkrel 10
 
 ##### RPM PROBLEM WORKAROUNDS
 
@@ -46,20 +46,20 @@ with image position checks, a photo test page and a text test page.
 
 %prep
 # remove old directory
-rm -rf %{_builddir}/%{name}-%{version}
-mkdir %{_builddir}/%{name}-%{version}
+rm -rf $RPM_BUILD_DIR/%{name}-%{version}
+mkdir $RPM_BUILD_DIR/%{name}-%{version}
 
 # Red Hat test pages
 %setup -q -T -D -a 300 -n %{name}-%{version}
 
 # Photo test page
-bzcat %{SOURCE302} > %{_builddir}/%{name}-%{version}/photo-testpage.jpg
+bzcat %{SOURCE302} > $RPM_BUILD_DIR/%{name}-%{version}/photo-testpage.jpg
 
 
 
 %build
 
-cd %{_builddir}/%{name}-%{version}
+cd $RPM_BUILD_DIR/%{name}-%{version}
 
 # Mandrivized CUPS test page
 cat testprint.prolog.ps.in MDALINUX-ps1.eps testprint.epilog.ps.in > testprint.ps
@@ -72,14 +72,14 @@ fig2dev -Lps -zA4 testpage-a4.fig testpage-a4.ps
 
 %install
 
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 # Make directory
-install -d %{buildroot}%{_datadir}/%{name}
+install -d $RPM_BUILD_ROOT%{_datadir}/%{name}
 
-cd %{_builddir}/%{name}-%{version}
+cd $RPM_BUILD_DIR/%{name}-%{version}
 
-cp *.ps *.jpg *.asc %{buildroot}%{_datadir}/printer-testpages
+cp *.ps *.jpg *.asc $RPM_BUILD_ROOT%{_datadir}/printer-testpages
 
 
 
@@ -92,5 +92,50 @@ cp *.ps *.jpg *.asc %{buildroot}%{_datadir}/printer-testpages
 
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
+
+
+
+%changelog
+* Thu May 05 2011 Oden Eriksson <oeriksson@mandriva.com> 2006-8mdv2011.0
++ Revision: 667834
+- mass rebuild
+
+* Fri Dec 03 2010 Oden Eriksson <oeriksson@mandriva.com> 2006-7mdv2011.0
++ Revision: 607208
+- rebuild
+
+* Sun Mar 14 2010 Oden Eriksson <oeriksson@mandriva.com> 2006-6mdv2010.1
++ Revision: 519058
+- rebuild
+
+* Thu Sep 03 2009 Christophe Fergeau <cfergeau@mandriva.com> 2006-5mdv2010.0
++ Revision: 426779
+- rebuild
+
+* Sat Mar 07 2009 Antoine Ginies <aginies@mandriva.com> 2006-4mdv2009.1
++ Revision: 351624
+- rebuild
+
+* Wed Jun 18 2008 Thierry Vignaud <tv@mandriva.org> 2006-3mdv2009.0
++ Revision: 225074
+- rebuild
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Mon Dec 17 2007 Thierry Vignaud <tv@mandriva.org> 2006-2mdv2008.1
++ Revision: 125655
+- kill re-definition of %%buildroot on Pixel's request
+
+* Fri Jun 08 2007 Adam Williamson <awilliamson@mandriva.org> 2006-2mdv2008.0
++ Revision: 37057
+- clean spec, rebuild for new era
+
+
+* Thu Aug 25 2005 Till Kamppeter <till@mandriva.com> 2006-1mdk
+- Changed logo and name from "Mandrake" to "Mandriva".
+
+* Fri Feb 04 2005 Till Kamppeter <till@mandrakesoft.com> 10.2-0.1mdk
+- Introduced a separate package for the printer test pages.
 
