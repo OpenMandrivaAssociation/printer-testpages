@@ -1,6 +1,6 @@
 %define name printer-testpages
 %define version 2006
-%define release 12
+%define release 13
 
 ##### RPM PROBLEM WORKAROUNDS
 
