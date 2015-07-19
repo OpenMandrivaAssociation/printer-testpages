@@ -1,7 +1,7 @@
 Summary:	Test pages to check the output quality of printers
 Name:		printer-testpages
 Version:	2013
-Release:	8
+Release:	9
 License:	GPLv2
 Group:		Publishing
 Url:		%{disturl}
